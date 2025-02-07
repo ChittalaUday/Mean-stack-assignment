@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclude</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Excluding Elements in arrays</h1>
+
+    <div style="text-align: center;">
+        <input type="number" id="number" placeholder="Enter a number to push into array">
+        <input type="button" value="Push" onclick="push()">
+    </div>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <input type="number" id="excludeNumber" placeholder="Enter number to exclude">
+        <input type="button" value="Exclude" onclick="exclude()">
+    </div>
+
+    <div  style="margin-top: 20px; text-align: center;">
+        <h4>Output:</h4>
+        <div id="array"></div>
+        <div id="exNumber"></div>
+        <div id="exArray"></div>
+
+    </div>
+
+    <script>
+        let arr = [];
+        let eArr = [];
+
+        function push(){
+            let number = document.getElementById('number').value;
+            arr.push(number);
+            document.getElementById('array').innerText = "Array to Exclude: ["+arr+"]";
+            
+        }
+
+        function exclude(){
+            let number = document.getElementById('excludeNumber').value;
+            
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] != number){
+                    eArr.push(arr[i]);
+                }
+            }
+
+            document.getElementById('exNumber').innerText = "Number to Exclude: "+number;
+            document.getElementById('exArray').innerText = "Excluded Array: ["+eArr +"]";
+
+        }
+
+        
+
+    </script>
+
+
+</body>
+</html>

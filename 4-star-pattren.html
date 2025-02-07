@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Pattren</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Star (*) Pattren</h1>
+    <div style="display: flex; justify-content: center;">
+        <input type="number" id="number" placeholder="Enter a number">
+        <button onclick="Print()">Print</button>
+    </div>
+    
+    <div style="display: flex; justify-content: center;">
+        <div id="pattren" ></div>
+    </div>
+
+    <script>
+        function Print() {
+            let number = document.getElementById('number').value;
+            let container = document.getElementById('pattren');
+            for(let i = 1; i <= number; i++) {
+                let str = '*'.repeat(i);
+                container.innerHTML += `<p>${str}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

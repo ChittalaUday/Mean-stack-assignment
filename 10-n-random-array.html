@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return M Unique Values for N natural Number</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Return M Unique Values for N natural Number</h1>
+    <div style="text-align: center;">
+        <input type="number" id="n"/>
+        <input type="button" value="submit" onclick="random()"/>
+    </div>
+    <h4 id="output" style="text-align: center;"></h4>
+    <script>
+
+        function random(){
+            let val = document.getElementById("n").value;
+            let num = Math.floor(Math.random() * val);
+            let out = [...(getUniqueRandomNumbers(num,val))];
+            document.getElementById("output").textContent = "["+out+"]";
+            console.log(out);            
+            
+        }
+
+        function getUniqueRandomNumbers(range,val) {
+            let numbers = new Set();
+            while (numbers.size < range) {
+                let num = Math.floor(Math.random() * val);
+                numbers.add(num);
+            }
+            return numbers;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd Even</title>
+</head>
+<body>
+    <h1 style="text-align: center;">EVEN-ODD Check</h1>
+    <div style="text-align: center;">
+        <input type="number" id="number" placeholder="Enter a number">
+        <button onclick="check()">Check</button>
+        
+    </div>
+    <div id="container" style="text-align: center;">
+
+    </div>
+
+    <script>
+        function check() {
+            let number = document.getElementById('number').value;
+            let container = document.getElementById('container');
+            container.innerHTML = "Given Number is:"+number;
+            for(let i = 0; i < number; i++) {
+                if(i % 2 == 0) {
+                    container.innerHTML += `<p>${i} is Even</p>`;
+                } else {
+                    container.innerHTML += `<p>${i} is Odd</p>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

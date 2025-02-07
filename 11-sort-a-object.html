@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Array of Objects</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Sort an Array of Objects Based on Their Key</h1>
+    <div style="text-align: center">
+        <input type="number" id="rollNo" placeholder="RollNo"/>
+        <input type="text" id="name" placeholder="Name"/>
+        <input type="number" id="marks" placeholder="Marks"/>
+        <input type="button" value="Add" onclick="addToTable()"/>
+    </div>
+
+    <table >
+        <thead>
+            <tr>
+                <th>
+                    Roll No
+                    <button onclick="updateTable('rollNo')">Sort</button>
+                </th>
+                <th>
+                    Name
+                    <button onclick="updateTable('name')">Sort</button>
+                </th>
+                <th>
+                    Marks
+                    <button onclick="updateTable('marks')">Sort</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tBody"></tbody>
+    </table>
+
+    <script>
+        let studentData = [];
+
+        function addToTable() {
+            let rollNo = document.getElementById("rollNo").value.trim();
+            let name = document.getElementById("name").value.trim();
+            let marks = document.getElementById("marks").value.trim();
+
+            
+            let studentObj = {
+                rollNo: parseInt(rollNo), 
+                name: name,
+                marks: parseInt(marks)    
+            };
+
+            studentData.push(studentObj);
+            updateTable('rollNo');
+        }
+
+        function updateTable(key ) {
+            studentData.sort((a, b) => {
+                if (typeof a[key] === "number") {
+                    return a[key] - b[key];
+                } else {
+                    return a[key].localeCompare(b[key]);
+                }
+            });
+
+            let tBody = document.getElementById("tBody");
+            tBody.innerHTML = "";
+
+            studentData.forEach(student => {
+                let row = `<tr>
+                    <td>${student.rollNo}</td>
+                    <td>${student.name}</td>
+                    <td>${student.marks}</td>
+                </tr>`;
+                tBody.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>

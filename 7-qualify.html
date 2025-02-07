@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualify</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Qualified or Not</h1>
+
+    <div style="text-align: center;">
+        <input type="text" maxlength="2" id="grade" placeholder="grade"/>
+        <input type="number" id="year" placeholder="year"/>
+        <input type="button" value="Check" onclick="check()"/>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function check(){
+            let grade = document.getElementById('grade').value;
+            let year = document.getElementById('year').value;
+            let result = (grade=="A" && year <2020)? "Qualified":"Failed";
+
+            document.getElementById("result").innerHTML = "You are "+result;
+            console.log(result);
+
+        }
+    </script>
+</body>
+</html>

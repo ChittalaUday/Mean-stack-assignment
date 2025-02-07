@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequency</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Frequency of an element in a String</h1>
+    <div style="text-align: center;">
+        <input type="text" id="str" />
+        <input type="button" value="Submit" onclick="check()"/>
+    </div>
+    <div id="output" style="text-align: center;">
+
+    </div>
+    <script>
+        
+        function check(){    
+            let givenString = document.getElementById("str").value;
+            const outputDiv = document.querySelector("#output");
+
+            outputDiv.innerHTML += "<br>Given String:"+givenString+"<br>";
+               
+
+            let uniqueSet = new Set(givenString);
+            let ouput = []
+            for(x of uniqueSet){
+                let frequencyObject = new Object();
+                let count = 0;
+                for(y of givenString){
+                    if(x==y){
+                        count++;
+                    }
+                }
+                frequencyObject.charecter = x;
+                frequencyObject.count = count;
+                outputDiv.innerHTML += "<br>Charecter:"+x+" number: "+count;
+                ouput.push(frequencyObject);
+            }
+            console.log(ouput);
+
+
+        }
+    </script>
+</body>
+</html>

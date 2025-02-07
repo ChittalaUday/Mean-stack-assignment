@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            margin: 10px 0;
+        }
+
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">User Registration Form</h2>
+
+    <form onsubmit="submitForm(); return false;">
+        <label>Name:
+            <input type="text" name="name" required>
+        </label>
+        <label>Email:
+            <input type="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+        </label>
+        <label>Password:
+            <input type="password" name="password" maxlength="8" required>
+        </label>
+        <label>
+            Gender:
+            <input type="radio" name="gender" value="Male" required>Male
+            <input type="radio" name="gender" value="Female">Female 
+        </label>
+        <label>
+            Date of Birth:
+            <input type="date" name="dob" required>
+        </label>
+        <label>
+            Profile Picture:
+            <input type="file" name="profile" required onchange="previewImage()">
+        </label>
+        <img id="preview" src="" alt="Profile Preview" style="display: none;">
+        <label>
+            <input type="submit" value="Submit">
+        </label>
+    </form>
+
+    <table id="user-data">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Profile Picture</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function previewImage() {
+            
+            let file = document.querySelector('input[name="profile"]').files[0];
+            if (file) {
+                let imgPreview = document.getElementById("preview");
+                imgPreview.src = "./images/"+file.name;
+                imgPreview.style.display = "block";
+            }
+        }
+
+        function submitForm() {
+            let name = document.querySelector('input[name="name"]').value;
+            let email = document.querySelector('input[name="email"]').value;
+            let password = document.querySelector('input[name="password"]').value;
+            let gender = document.querySelector('input[name="gender"]:checked')?.value;
+            let dob = document.querySelector('input[name="dob"]').value;
+            let profile = document.querySelector('input[name="profile"]').files[0];
+
+            if (!profile) {
+                alert("Please select a profile picture.");
+                return;
+            }
+
+            if(password.length < 8){
+                alert("Password must be at least 8 characters long.");
+                return;
+            }
+
+            let imgSrc =  "./images/"+profile.name; 
+
+            let tableBody = document.querySelector("#user-data tbody");
+            let tableRow = document.createElement("tr");
+
+            tableRow.innerHTML = `
+                <td>${name}</td>
+                <td>${email}</td>
+                <td>${password}</td>
+                <td>${gender}</td>
+                <td>${dob}</td>
+                <td><img src="${imgSrc}"></td>
+            `;
+
+            tableBody.appendChild(tableRow);
+
+            document.querySelector("form").reset();
+            document.getElementById("preview").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

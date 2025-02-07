@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td{
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Student Marks</h1>
+    <div style="text-align: center;">
+        <input type="text" id="name" placeholder="Enter Student Name">
+        <input type="number"  id="marks" placeholder="Enter Marks">
+        <input type="button" value="Add" onclick="add()">
+        <button onclick="topThree()">Top 3 Students</button>
+            
+    </div>
+
+    <div style="margin: 40px; display: flex; justify-content: center;">
+        <div>
+            <h3>All Student Details:</h3>
+            <table> 
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody id="student-table"></tbody>
+            </table>
+        
+        </div>
+        
+        <div style="margin-left: 40px;">
+            <h3>Top 3:</h3>
+            
+            <table> 
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody id="top3"></tbody>
+            </table>
+        
+        </div>
+    </div>
+
+    <script>
+        let students = [];
+
+        function add(){
+            let name = document.getElementById('name').value;
+            let marks = document.getElementById('marks').value;
+            let ob = new Object();
+            ob.name = name;
+            ob.marks = marks;
+            students.push(ob);
+
+            let studentTable = document.getElementById('student-table');
+            let tr = document.createElement('tr');
+            let td1 = tr.appendChild(document.createElement('td'));
+            let td2 = tr.appendChild(document.createElement('td'));
+            td1.innerText = name;
+            td2.innerText = marks;
+            studentTable.appendChild(tr);
+        }
+
+        function topThree(){
+            let top3Array = students.sort((a, b) => b.marks - a.marks).slice(0,3);
+            
+            top3Array.forEach(x=>{
+                let top3Table = document.getElementById('top3');
+                let tr = document.createElement('tr');
+                let t1 = tr.appendChild(document.createElement('td'));
+                let t2 = tr.appendChild(document.createElement('td'));
+                t1.innerText = x.name;
+                t2.innerText = x.marks;
+                top3Table.appendChild(tr);
+            })
+
+
+        }
+    </script>
+    
+</body>
+</html>

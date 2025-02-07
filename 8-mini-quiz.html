@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Varela+Round&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Exam</title>
+    <style>
+        body {
+            font-family: "Varela Round", serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #fff;
+            text-align: center;
+            font-weight: bold;
+            font-size: large;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header span {
+            color: #0075FF;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .question-container {
+            max-height: 400px;
+            width: 800px;
+            background-color: #fff;
+            margin-left: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        .question-container h3 {
+            margin-bottom: 10px;
+        }
+
+        .question-container label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .question-container button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #0075FF;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .question-container button:hover {
+            background-color: #005FCC;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a>Online Exam <span>.</span></a>
+    </header>
+
+    <main>
+        <div class="question-container"></div>
+    </main>
+
+    <script>
+        const quizData = [
+            {
+                question: "What is the output of `typeof null` in JavaScript?",
+                options: ["object", "null", "undefined", "string"],
+                answer: "object"
+            },
+            {
+                question: "Which of the following is not a JavaScript data type?",
+                options: ["Number", "Boolean", "Float", "Object"],
+                answer: "Float"
+            },
+            {
+                question: "Which symbol is used for comments in JavaScript?",
+                options: ["//", "/* */", "--", "Both // and /* */"],
+                answer: "Both // and /* */"
+            },
+            {
+                question: "Which method is used to convert a JSON string into an object?",
+                options: ["JSON.parse()", "JSON.stringify()", "JSON.objectify()", "JSON.toObject()"],
+                answer: "JSON.parse()"
+            },
+            {
+                question: "What will `console.log(3 + '3')` output?",
+                options: ["6", "33", "NaN", "Error"],
+                answer: "33"
+            },
+            {
+                question: "Which keyword is used to declare a constant variable in JavaScript?",
+                options: ["var", "let", "const", "static"],
+                answer: "const"
+            },
+            {
+                question: "What does the `push()` method do in JavaScript arrays?",
+                options: ["Removes last element", "Adds element to end", "Adds element to start", "Removes first element"],
+                answer: "Adds element to end"
+            },
+            {
+                question: "Which of these is a correct way to declare an arrow function?",
+                options: ["function() => {}", "() => {}", "=> () {}", "() {} =>"],
+                answer: "() => {}"
+            },
+            {
+                question: "Which of the following loops executes at least once regardless of condition?",
+                options: ["for", "while", "do-while", "foreach"],
+                answer: "do-while"
+            },
+            {
+                question: "What does `NaN` stand for in JavaScript?",
+                options: ["Not a Null", "Not a Number", "No assigned Number", "New Array Node"],
+                answer: "Not a Number"
+            }
+        ];
+
+        let selectedQuestions = [];
+        let score = 0;
+        let currentQuestion = 0;
+
+        function getUniqueRandomNumbers() {
+            let numbers = new Set();
+            while (numbers.size < 5) {
+                let num = Math.floor(Math.random() * quizData.length);
+                numbers.add(num);
+            }
+            return numbers;
+        }
+
+        for (let x of getUniqueRandomNumbers()) {
+            selectedQuestions.push(quizData[x]);
+        }
+
+        function loadQuestion() {
+            const questionDiv = document.querySelector(".question-container");
+            questionDiv.innerHTML = ""; 
+
+            if (currentQuestion < selectedQuestions.length) {
+                const questionObj = selectedQuestions[currentQuestion];
+
+                const questionTitle = document.createElement("h3");
+                questionTitle.textContent = (currentQuestion+1)+". "+questionObj.question;
+                questionDiv.appendChild(questionTitle);
+
+                questionObj.options.forEach(option => {
+                    const label = document.createElement("label");
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.name = "answer";
+                    radio.value = option;
+
+                    label.appendChild(radio);
+                    label.appendChild(document.createTextNode(" " + option));
+                    questionDiv.appendChild(label);
+                });
+
+                const submitButton = document.createElement("button");
+                submitButton.textContent = "Submit";
+                submitButton.onclick = checkAnswer;
+                questionDiv.appendChild(submitButton);
+            } else {
+                questionDiv.innerHTML = `<h3>Your Score: ${score} / 5</h3>`;
+            }
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector("input[name='answer']:checked");
+            if (!selectedOption) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            if (selectedOption.value === selectedQuestions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+
+</body>
+</html>
