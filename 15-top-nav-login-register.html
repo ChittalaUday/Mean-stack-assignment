@@ -4,8 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f4f4f4; 
+        }
+
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 2px 0px 5px rgba(0, 0,0, 0.1);
+        }
+
+        .nav-links{
+            display: flex;
+        }
+
+        .nav-links a{
+            text-decoration: none;
+            padding: 20px 10px;
+            align-content: center;
+            color: #000;
+        }
+
+        .navbar h1{
+            margin-left: 20px
+        }
+
+
+
+    </style>
+
 </head>
 <body>
-    
+    <div class="navbar">
+        <div>
+            <h1>NavBar</h1>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Videos</a>
+            <a href="#">Contact</a>
+            <a href="#">Subscribe</a>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <span>Login</span>
+        </div>
+    </div>
 </body>
 </html>
