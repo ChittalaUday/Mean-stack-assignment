@@ -3,38 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Top Nav Bar & Login</title>
     <style>
         body {
             margin: 0;
             background-color: #f4f4f4; 
+            font-family: Arial, sans-serif;
         }
 
-        .navbar{
+        .navbar {
             display: flex;
             justify-content: space-between;
-            box-shadow: 2px 0px 5px rgba(0, 0,0, 0.1);
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 10px 20px;
         }
 
-        .nav-links{
+        .nav-links {
             display: flex;
         }
 
-        .nav-links a{
+        .nav-links a {
             text-decoration: none;
-            padding: 20px 10px;
+            padding: 10px 15px;
             align-content: center;
             color: #000;
         }
 
-        .navbar h1{
-            margin-left: 20px
+        .navbar h1 {
+            margin: 0;
         }
 
+        .form-container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+        }
 
+        .form-wrapper {
+            position: relative;
+            width: 300px;
+            height: 320px;
+            perspective: 1000px;
+        }
 
+        .form {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            backface-visibility: hidden;
+            border-radius: 8px;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .form h2 {
+            margin-bottom: 20px;
+        }
+
+        .form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #efefef;
+        }
+
+        .form.login {
+            transform: rotateY(0deg);
+        }
+
+        .form.register {
+            transform: rotateY(180deg);
+        }
+
+        .form-wrapper.flipped .login {
+            transform: rotateY(-180deg);
+        }
+
+        .form-wrapper.flipped .register {
+            transform: rotateY(0deg);
+        }
+
+        .toggle-button {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .toggle-button button {
+            background-color: transparent;
+            border: none;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        
+        
     </style>
-
 </head>
 <body>
     <div class="navbar">
@@ -51,10 +138,43 @@
         </div>
     </div>
 
-    <div>
-        <div>
-            <span>Login</span>
+        <div class="form-container">
+            <div class="form-wrapper" id="formWrapper">
+                <div class="form login">
+                    <h2>Login</h2>
+                    <form action="/login" method="post">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                    <div class="toggle-button">
+                        <button type="button" onclick="toggleForm()">Don't have an account? Register</button>
+                    </div>
+                </div>
+                <div class="form register">
+                    <h2>Register</h2>
+                    <form action="/register" method="post">
+                        <label for="new-username">Username:</label>
+                        <input type="text" id="new-username" name="new-username" required>
+                        <label for="new-password">Password:</label>
+                        <input type="password" id="new-password" name="new-password" required>
+                        <button type="submit">Register</button>
+                    </form>
+                    <div class="toggle-button">
+                        <button type="button" onclick="toggleForm()">Already have an account? Login</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    
+    <script>
+        function toggleForm() {
+            const formContainer = document.getElementById('formWrapper');
+            formContainer.classList.toggle('flipped');
+        }
+
+    </script>
 </body>
 </html>

@@ -14,46 +14,75 @@
             height: 100vh;
             width: 250px;
             background-color: #fff;
-            padding: 20px; 
+            padding: 20px;
             position: fixed;
             right: 0;
             top: 0;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidenav.active {
+            transform: translateX(0);
         }
 
         .sidenav a {
-            display: flex; 
-            padding: 12px 15px; 
+            display: flex;
+            padding: 12px 15px;
             text-decoration: none;
-            font-size: 16px; 
-            color: #333; 
+            font-size: 16px;
+            color: #333;
             transition: 0.3s;
-            border-radius: 5px; 
-            margin-bottom: 5px; 
+            border-radius: 5px;
+            margin-bottom: 5px;
         }
 
         .sidenav a:hover {
-            background-color: #e0f2f7; 
-            color: #007bff; 
+            background-color: #e0f2f7;
+            color: #007bff;
         }
-        .sidenav a.active{
+
+        .sidenav a.active {
             background-color: #bbdefb;
             color: #007bff;
         }
 
-        .content {
-            flex: 1; 
-            padding: 20px;
-            margin-left: 20px; 
+        .menu {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: #007bff;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        h2 {
-            margin-bottom: 10px;
+        .menu img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .close-btn {
+            display: flex;
+            justify-content: flex-end;
+            cursor: pointer;
+        }
+
+        .content {
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="sidenav">
+    <div class="menu" onclick="toggleNav()">
+        <img src="./images/menu.svg" alt="menu"/>
+    </div>
+    
+    <div class="sidenav" id="sidenav">
+        <div class="close-btn" onclick="toggleNav()">
+            <img src="./images/close.svg" alt="close" />
+        </div>
         <a href="#" class="active">Home</a>
         <a href="#">About</a>
         <a href="#">Services</a>
@@ -61,9 +90,16 @@
         <a href="#">Contact</a>
         <a href="#">Subscribe</a>
     </div>
+
     <div class="content">
         <h2>This is a Side Navigation Bar</h2>
         <p>This is some content in this area....</p>
     </div>
+
+    <script>
+        function toggleNav() {
+            document.getElementById("sidenav").classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
