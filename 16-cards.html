@@ -6,11 +6,58 @@
     <title>Cards</title>
     <style>
         body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             background-color: #efefef;
+            text-align: center;
         }
-        .container{
+        .container{ 
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+        .container div{
+            max-width: 200px;
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        .container img{
+            max-width: 150px;
+            border-radius: 10px;
+        }
+
+        .container p{
+            color: #393838;
+        
+            font-size: small;   
+        }
+
+        a::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px; 
+            background-color: black; 
+            position: absolute;
+            bottom: -2px; 
+            left: 0;
+        }
+
+        a {
+            position: relative; 
+            text-decoration: none; 
+            color: #393838;
+        }
+
+        button{
+            border-color: #007bff;
+            padding: 10px 20px;
+            margin: 20px ;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -19,49 +66,55 @@
     <p>from renovattions and room additions to masonry and other handyman services</p>
     <div class="container">   
         <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         <div>
-            <img src="./images/design-1.png"/>
-            <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
-            <a href="#">More</a>
-        </div>
-
-        <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         <div>
-            <img src="./images/design-1.png"/>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
+            <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
+            <a href="#">More</a>
+        </div>
+        <div>
+            <img src="./images/naruto.jpg"/>
+            <h4>Heading</h4>
             <p>Simple text. Click to select the text book.click again or double click to editing the text.</p>
             <a href="#">More</a>
         </div>
         
-    </div>
-
+        </div>
     <button>View More</button>
 </body>
 </html>
